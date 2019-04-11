@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import logo from "../logo.png";
 
 class Home extends Component {
@@ -32,7 +33,9 @@ class Home extends Component {
               CC 3.0 BY
             </a>
           </div> */}
-          <button>Dashboard</button>
+          <Link to="/dashboard">
+            <button>Dashboard</button>
+          </Link>
         </header>
       </div>
     );
