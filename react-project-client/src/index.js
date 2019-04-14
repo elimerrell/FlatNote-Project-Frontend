@@ -3,14 +3,14 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import Home from "./components/home";
+import Signup from "./components/signup";
 import Dashboard from "./components/dashboard";
 
 ReactDOM.render(
   <Router>
     <React.Fragment>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/dashboard" component={Dashboard} />
+      <Route exact path="/" component={Dashboard} />
+      <Route exact path="/signup" component={Signup} />
     </React.Fragment>
   </Router>,
   document.getElementById("root")

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Note from "./note";
+import { Card, CardContent, Title, Subtitle} from 'reactbulma'
 
 const NOTES = "http://localhost:3000/api/v1/notebooks/1/notes";
 class Notebook extends Component {
@@ -28,11 +29,12 @@ class Notebook extends Component {
 
   render() {
     return (
-      <div>
-        <h3> {this.props.notebook.title}</h3>
-        <p>{this.props.notebook.description}</p>
-        {this.mapNotes()}
-      </div>
+      <Card>
+        <CardContent>
+          <Title>{this.props.notebook.title}</Title>
+          <Subtitle>{this.props.notebook.description}</Subtitle>
+        </CardContent>
+      </Card>
     );
   }
 }
