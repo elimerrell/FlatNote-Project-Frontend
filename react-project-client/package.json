@@ -3,17 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cra-sass": "^0.0.5",
     "node-sass": "^4.11.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-bulma-components": "^2.3.0",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8",
-    "reactbulma": "^3.0.4"
+    "react-scripts": "2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cross-env NODE_PATH=./src",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Note from "./note";
-import { Card, CardContent, Title, Subtitle} from 'reactbulma'
+import Card from 'react-bulma-components/lib/components/card';
+import Content from 'react-bulma-components/lib/components/content';
+import Heading from 'react-bulma-components/lib/components/heading';
 
 const NOTES = "http://localhost:3000/api/v1/notebooks/1/notes";
 class Notebook extends Component {
@@ -30,10 +32,10 @@ class Notebook extends Component {
   render() {
     return (
       <Card>
-        <CardContent>
-          <Title>{this.props.notebook.title}</Title>
-          <Subtitle>{this.props.notebook.description}</Subtitle>
-        </CardContent>
+        <Card.Content>
+          <Heading>{this.props.notebook.title}</Heading>
+          <Content>{this.props.notebook.description}</Content>
+        </Card.Content>
       </Card>
     );
   }
