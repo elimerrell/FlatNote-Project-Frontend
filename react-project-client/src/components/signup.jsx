@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import logo from "../logo.png";
 
 class Signup extends Component {
   constructor() {

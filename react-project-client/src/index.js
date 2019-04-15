@@ -5,12 +5,15 @@ import "./index.scss";
 import * as serviceWorker from "./serviceWorker";
 import Signup from "./components/signup";
 import Dashboard from "./components/dashboard";
+import Notebook from "./components/notebook";
 
 ReactDOM.render(
   <Router>
     <React.Fragment>
       <Route exact path="/" component={Dashboard} />
       <Route exact path="/signup" component={Signup} />
+      {/* <Route path="/notebook/:id" component={Notebook} /> */}
+      <Route path="/notebook/1" component={Notebook} />
     </React.Fragment>
   </Router>,
   document.getElementById("root")
