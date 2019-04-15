@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Columns from "react-bulma-components/lib/components/columns";
 import Container from "react-bulma-components/lib/components/container";
+import Section from "react-bulma-components/lib/components/section";
+import Box from "react-bulma-components/lib/components/box";
 import NotebookCard from "./notebookCard";
 import { withRouter } from "react-router-dom";
 
@@ -31,7 +33,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <Container>
+      <div className="dashboard">
         <Columns>
           {// this.state.notebooks.length > 0 ? this.state.notebooks.map(notebook => {return <Link to={`/notebook/${notebook.id}`} component={notebook}><Columns.Column size={3}><NotebookCard notebook={notebook} /></Columns.Column></Link>}) : null
           this.state.notebooks.length > 0
@@ -47,7 +49,7 @@ class Dashboard extends Component {
               })
             : null}
         </Columns>
-      </Container>
+      </div>
     );
   }
 }

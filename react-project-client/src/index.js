@@ -8,9 +8,11 @@ import SignIn from "./components/signin";
 import Groups from "./components/groups";
 import Dashboard from "./components/dashboard";
 import Notebook from "./components/notebook";
+import Navbar from "./components/navbar";
 
 ReactDOM.render(
   <Router>
+    <Navbar />
     <React.Fragment>
       <Route exact path="/" component={Dashboard} />
       <Route exact path="/signin" component={SignIn} />

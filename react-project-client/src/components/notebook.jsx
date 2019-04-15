@@ -1,17 +1,28 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Note from "./note";
 import Container from "react-bulma-components/lib/components/container";
-import Tile from "react-bulma-components/lib/components/tile";
+
 import Section from "react-bulma-components/lib/components/section";
 import Box from "react-bulma-components/lib/components/box";
-import Heading from "react-bulma-components/lib/components/heading";
-import Image from "react-bulma-components/lib/components/image";
+import Button from "react-bulma-components/lib/components/button";
+import Modal from "react-bulma-components/lib/components/modal";
 
 class Notebook extends Component {
+  static propTypes = {
+    modal: PropTypes.object
+  };
+
+  static defaultProps = {
+    modal: {}
+  };
+
   constructor(props) {
     super(props);
     this.state = {
-      notes: []
+      notes: [],
+      currentNote: {},
+      show: false
     };
     this.getNotes();
   }
@@ -29,8 +40,43 @@ class Notebook extends Component {
       );
   };
 
+  open = () => this.setState({ show: true });
+  close = () => this.setState({ show: false });
+
+  handleClick = note => {
+    this.open();
+    this.setState({
+      currentNote: note
+    });
+    console.log(this.state.currentNote);
+  };
+
   mapNotes = () => {
-    return this.state.notes.map(note => <Note note={note} />);
+    return this.state.notes.map(note => (
+      <Note note={note} handleClick={this.handleClick} />
+    ));
+  };
+
+  handleChange = () => {};
+
+  openModal = () => {
+    return (
+      <Container>
+        <div className="modal-box">
+          <Box>
+            <input
+              name="title"
+              value={this.state.currentNote.title}
+              onChange={this.handleChange}
+            />
+            <textarea name="content" rows="10" cols="70">
+              {this.state.currentNote.content}
+            </textarea>
+            <Button color="info">Update</Button>
+          </Box>
+        </div>
+      </Container>
+    );
   };
 
   render() {
@@ -38,6 +84,13 @@ class Notebook extends Component {
       <Container>
         <Section>
           <Box>{this.mapNotes()}</Box>
+          <Modal
+            modal={{ closeOnBlur: true }}
+            show={this.state.show}
+            onClose={this.close}
+          >
+            {this.openModal()}
+          </Modal>
         </Section>
       </Container>
     );

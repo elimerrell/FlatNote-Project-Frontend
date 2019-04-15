@@ -7,9 +7,12 @@ class Note extends Component {
   }
   render() {
     return (
-      <div>
-        <h3>Title: {this.props.note.title}</h3>
-        <p>Content: {this.props.note.content}</p>
+      <div
+        className="sticky"
+        onClick={() => this.props.handleClick(this.props.note)}
+      >
+        <h3>{this.props.note.title}</h3>
+        <p>{this.props.note.content}</p>
       </div>
     );
   }
