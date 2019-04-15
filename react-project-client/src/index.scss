@@ -57,9 +57,49 @@ code {
   background: #ffffa5;
   margin: 10px;
   display: inline-block;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.sticky:hover {
+  top: -15px;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.2);
 }
 
 .modal-box {
   margin: auto;
   width: 500px;
+  animation: slidein 0.5s;
+}
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+  }
+
+  to {
+    margin-left: 120px;
+  }
+}
+
+.new-note {
+  transition: all 0.3s ease;
+  z-index: 10;
+  background-color: rgb(152, 156, 154);
+  position: sticky;
+  top: 0px;
+  left: 0;
+  border: 2px solid;
+  border-color: grey;
+  border-radius: 6px;
+  padding: 20px;
+  margin-left: 120px;
+  margin-right: 120px;
+  animation: slidein 0.5s;
+}
+
+#title {
+  background-color: white;
+}
+
+#content {
+  background-color: white;
 }
