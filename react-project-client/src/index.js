@@ -16,7 +16,7 @@ ReactDOM.render(
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/groups" component={Groups} />
-      <Route path="/notebook/1" component={Notebook} />
+      <Route path="/notebook/:notebookId" component={Notebook} />
     </React.Fragment>
   </Router>,
   document.getElementById("root")

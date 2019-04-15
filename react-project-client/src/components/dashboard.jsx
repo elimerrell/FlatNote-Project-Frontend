@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Columns from "react-bulma-components/lib/components/columns";
 import Container from "react-bulma-components/lib/components/container";
 import NotebookCard from "./notebookCard";
-// import { Link } from "react-router-dom"
+import { withRouter } from "react-router-dom";
 
 const NOTEBOOKs = "http://localhost:3000/api/v1/notebooks";
 class Dashboard extends Component {
@@ -24,14 +24,28 @@ class Dashboard extends Component {
       );
   };
 
+  handleClick = notebook => {
+    console.log(notebook);
+    this.props.history.push(`/notebook/${notebook.id}`);
+  };
+
   render() {
     return (
       <Container>
         <Columns>
-        {
-          // this.state.notebooks.length > 0 ? this.state.notebooks.map(notebook => {return <Link to={`/notebook/${notebook.id}`} component={notebook}><Columns.Column size={3}><NotebookCard notebook={notebook} /></Columns.Column></Link>}) : null
-          this.state.notebooks.length > 0 ? this.state.notebooks.map(notebook => {return <Columns.Column size={3}><NotebookCard notebook={notebook} /></Columns.Column>}) : null
-        }
+          {// this.state.notebooks.length > 0 ? this.state.notebooks.map(notebook => {return <Link to={`/notebook/${notebook.id}`} component={notebook}><Columns.Column size={3}><NotebookCard notebook={notebook} /></Columns.Column></Link>}) : null
+          this.state.notebooks.length > 0
+            ? this.state.notebooks.map(notebook => {
+                return (
+                  <Columns.Column size={3}>
+                    <NotebookCard
+                      notebook={notebook}
+                      handleClick={this.handleClick}
+                    />
+                  </Columns.Column>
+                );
+              })
+            : null}
         </Columns>
       </Container>
     );
