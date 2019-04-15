@@ -3,14 +3,18 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./index.scss";
 import * as serviceWorker from "./serviceWorker";
-import Signup from "./components/signup";
+import SignUp from "./components/signup";
+import SignIn from "./components/signin";
+import Groups from "./components/groups";
 import Dashboard from "./components/dashboard";
 
 ReactDOM.render(
   <Router>
     <React.Fragment>
       <Route exact path="/" component={Dashboard} />
-      <Route exact path="/signup" component={Signup} />
+      <Route exact path="/signin" component={SignIn} />
+      <Route exact path="/signup" component={SignUp} />
+      <Route exact path="/groups" component={Groups} />
     </React.Fragment>
   </Router>,
   document.getElementById("root")

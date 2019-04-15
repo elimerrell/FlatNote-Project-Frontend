@@ -12,3 +12,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.circle {
+  position: relative;
+  border-radius: 50%;
+  width: 80%;
+  height: auto;
+  padding-top: 80%;
+  background: grey;
+}
+
+.circle-row {
+  width: 33%;
+  height: auto;
+  display: inline-block;
+}
