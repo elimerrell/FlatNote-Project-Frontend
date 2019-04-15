@@ -12,6 +12,7 @@ class Note extends Component {
         <div
           id={this.props.note.id}
           className="sticky"
+          style={{ backgroundColor: this.props.note.color }}
           onDoubleClick={() => this.props.handleClick(this.props.note)}
         >
           <h3>{this.props.note.title}</h3>

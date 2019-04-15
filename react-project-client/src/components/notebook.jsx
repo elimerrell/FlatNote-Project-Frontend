@@ -8,17 +8,9 @@ import Box from "react-bulma-components/lib/components/box";
 import Button from "react-bulma-components/lib/components/button";
 import Modal from "react-bulma-components/lib/components/modal";
 import NewNote from "./newnote";
-import { GithubPicker } from "react-color";
+import { CirclePicker } from "react-color";
 
 class Notebook extends Component {
-  static propTypes = {
-    modal: PropTypes.object
-  };
-
-  static defaultProps = {
-    modal: {}
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -71,10 +63,14 @@ class Notebook extends Component {
   handleColorChange = ev => {
     let note = document.getElementById(this.state.currentNote.id);
     note.style.backgroundColor = ev.hex;
+    this.setState({
+      color: ev.hex
+    });
   };
 
   patchNote = () => {
     const note = this.state.currentNote;
+    note.color = this.state.color;
     fetch(
       `http://localhost:3000/api/v1/notebooks/${
         this.state.currentNote.notebook_id
@@ -111,7 +107,13 @@ class Notebook extends Component {
                 onChange={this.handleChange}
                 value={this.state.currentNote.content}
               />
-              <GithubPicker onChange={this.handleColorChange} />
+              <div className="color-picker-wrapper">
+                <CirclePicker
+                  className="color-picker"
+                  noteColor={this.state.noteColor}
+                  onChange={this.handleColorChange}
+                />
+              </div>
               <Button color="info" onClick={this.patchNote}>
                 Update
               </Button>
