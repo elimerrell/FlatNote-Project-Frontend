@@ -7,6 +7,7 @@ import SignUp from "./components/signup";
 import SignIn from "./components/signin";
 import Groups from "./components/groups";
 import Dashboard from "./components/dashboard";
+import Notebook from "./components/notebook";
 
 ReactDOM.render(
   <Router>
@@ -15,6 +16,7 @@ ReactDOM.render(
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/groups" component={Groups} />
+      <Route path="/notebook/1" component={Notebook} />
     </React.Fragment>
   </Router>,
   document.getElementById("root")
