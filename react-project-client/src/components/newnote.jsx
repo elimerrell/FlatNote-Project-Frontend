@@ -69,7 +69,7 @@ class NewNote extends Component {
   render() {
     return (
       <div>
-        <Button onClick={() => this.toggleButton()}>
+        <Button id="note-toggle" onClick={() => this.toggleButton()}>
           {this.state.toggled === false ? <FaPlus /> : <FaMinus />}
         </Button>
         {this.state.toggled ? this.showNoteForm() : null}
