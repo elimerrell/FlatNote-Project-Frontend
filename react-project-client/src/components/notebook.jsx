@@ -9,6 +9,7 @@ import Button from "react-bulma-components/lib/components/button";
 import Modal from "react-bulma-components/lib/components/modal";
 import NewNote from "./newnote";
 import { CirclePicker } from "react-color";
+import Draggable from "react-draggable";
 
 class Notebook extends Component {
   constructor(props) {
@@ -84,6 +85,27 @@ class Notebook extends Component {
     this.setState({ show: false, currentNote: {} });
   };
 
+  deleteNote = () => {
+    let newNoteArray = this.state.notes.filter(
+      note => note.id !== this.state.currentNote.id
+    );
+    this.setState({
+      notes: newNoteArray
+    });
+    const note = this.state.currentNote;
+    fetch(
+      `http://localhost:3000/api/v1/notebooks/${
+        this.state.currentNote.notebook_id
+      }/notes/${this.state.currentNote.id}`,
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(note)
+      }
+    );
+    this.setState({ show: false, currentNote: {} });
+  };
+
   handleSubmit = ev => {
     ev.preventDefauly();
     this.patchNote();
@@ -117,6 +139,9 @@ class Notebook extends Component {
               <Button color="info" onClick={this.patchNote}>
                 Update
               </Button>
+              <Button color="danger" onClick={this.deleteNote}>
+                Delete
+              </Button>
             </form>
           </Box>
         </div>
@@ -130,7 +155,9 @@ class Notebook extends Component {
         <NewNote />
         <Container>
           <Section>
-            <Box>{this.mapNotes()}</Box>
+            <Draggable bounds={{ top: 0, left: 0, right: 0, bottom: 0 }}>
+              <Box>{this.mapNotes()}</Box>
+            </Draggable>
             <Modal
               modal={{ closeOnBlur: true }}
               show={this.state.show}

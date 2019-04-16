@@ -49,14 +49,17 @@ code {
 }
 
 .sticky {
+  font-size: 14pt;
   padding: 20px;
   border-radius: 6px;
   min-width: 200px;
-  // min-height: 200px;
-  height: 100px;
+  max-width: 400px;
+  min-height: 150px;
+  max-height: 400px;
   margin: 10px;
   display: inline-block;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  overflow: auto;
 }
 
 .sticky:hover {
@@ -113,4 +116,15 @@ code {
 .color-picker {
   margin: inherit;
   padding: 10px;
+}
+
+textarea {
+  font-size: 14pt;
+  border: 1px solid #888;
+  border-radius: 6px;
+  max-width: 400px;
+}
+
+button {
+  margin: 10px;
 }
