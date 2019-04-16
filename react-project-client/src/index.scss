@@ -50,8 +50,7 @@ code {
 }
 
 .dashboard {
-  margin: 50px;
-  display: flex;
+  margin: auto;
   align-content: center;
   justify-content: center;
 }
@@ -130,4 +129,8 @@ button {
 
 #note-toggle {
   position: fixed;
+}
+
+Container {
+  margin: auto;
 }

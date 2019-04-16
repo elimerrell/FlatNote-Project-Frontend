@@ -17,8 +17,15 @@ class NewNote extends Component {
     this.setState({
       title: ev.target.value
     });
-    let newReview = {};
-    newReview.title = this.state.title;
+    let newNote = {};
+    newNote.title = this.state.title;
+  };
+
+  clearInputs = () => {
+    this.setState({
+      title: "",
+      content: ""
+    });
   };
 
   showNoteForm = () => {
@@ -51,7 +58,9 @@ class NewNote extends Component {
 
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-link">Submit</button>
+                <button onClick={() => this.clearInputs} class="button is-link">
+                  Submit
+                </button>
               </div>
             </div>
           </form>
