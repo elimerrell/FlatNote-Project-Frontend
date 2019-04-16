@@ -150,10 +150,37 @@ class Notebook extends Component {
     );
   };
 
+  handleSubmit = ev => {
+    ev.preventDefault();
+    let newNote = {
+      title: ev.target.title.value,
+      content: ev.target.content.value
+    };
+    let newNotes = this.state.notes.slice();
+    newNotes.push(newNote);
+    this.setState({
+      notes: newNotes
+    });
+    this.persistNote(newNote);
+  };
+
+  persistNote = newNote => {
+    fetch(
+      `http://localhost:3000/api/v1/notebooks/${
+        this.state.currentNote.notebook_id
+      }/notes`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newNote)
+      }
+    );
+  };
+
   render() {
     return (
       <>
-        <NewNote />
+        <NewNote handleSubmit={this.handleSubmit} />
         <Container>
           <Section>
             <Draggable bounds={{ top: 0, left: 0, right: 0, bottom: 0 }}>

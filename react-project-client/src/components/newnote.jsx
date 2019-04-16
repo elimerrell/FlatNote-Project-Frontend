@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from "react-bulma-components/lib/components/button";
 import { FaPlus, FaMinus } from "react-icons/fa";
+import Container from "react-bulma-components/lib/components/container";
 
 class NewNote extends Component {
   constructor(props) {
@@ -22,26 +23,40 @@ class NewNote extends Component {
 
   showNoteForm = () => {
     return (
-      <div className="new-note" onInput={this.handleChange}>
-        <label htmlFor="title">Title</label>
-        <h3
-          id="title"
-          name="title"
-          contentEditable="true"
-          placeholder="Title"
-          inputMode="text"
-          //   onChange={this.handleChange}
-        />
-        <label htmlFor="content">Content</label>
-        <p
-          id="content"
-          name="content"
-          contentEditable="true"
-          placeholder="Content"
-          inputMode="text"
-          //   onChange={this.handleChange}
-        />
-      </div>
+      <Container>
+        <div className="new-note">
+          <form onSubmit={this.props.handleSubmit}>
+            <div class="field">
+              <label class="label">Title</label>
+              <div class="control">
+                <input
+                  name="title"
+                  class="input"
+                  type="text"
+                  placeholder="Note Title"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Content</label>
+              <div class="control">
+                <textarea
+                  name="content"
+                  class="textarea"
+                  placeholder="Note Content"
+                />
+              </div>
+            </div>
+
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-link">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </Container>
     );
   };
 

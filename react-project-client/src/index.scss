@@ -71,32 +71,16 @@ code {
   text-align: center;
   margin: auto;
   width: 500px;
-  animation: slidein 0.5s;
-}
-@keyframes slidein {
-  from {
-    margin-left: 100%;
-  }
-
-  to {
-    margin-left: 120px;
-  }
 }
 
 .new-note {
-  transition: all 0.3s ease;
   z-index: 10;
-  background-color: rgb(152, 156, 154);
+  background-color: rgb(115, 155, 135);
   position: sticky;
-  top: 0px;
-  left: 0;
-  border: 2px solid;
-  border-color: grey;
   border-radius: 6px;
   padding: 20px;
-  margin-left: 120px;
-  margin-right: 120px;
-  animation: slidein 0.5s;
+  max-width: 800px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 #title {
@@ -127,4 +111,9 @@ textarea {
 
 button {
   margin: 10px;
+}
+
+.control {
+  text-align: center;
+  max-width: 600px;
 }
