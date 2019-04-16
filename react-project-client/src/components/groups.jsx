@@ -21,11 +21,18 @@ class Groups extends Component {
       );
   };
 
+  handleClick = group => {
+    console.log(group);
+    this.props.history.push(`/group/${group.id}`);
+  };
+
   mapGroups = () => {
     return this.state.groups.map(group => {
       return (
         <div className="circle-row">
-          <div className="circle">{/* <h1>{group.name}</h1> */}</div>
+          <div className="circle" onClick={() => this.handleClick(group)}>
+            <h1>{group.name}</h1>
+          </div>
         </div>
       );
     });

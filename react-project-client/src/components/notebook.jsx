@@ -28,7 +28,11 @@ class Notebook extends Component {
     const {
       match: { params }
     } = this.props;
-    fetch(`http://localhost:3000/api/v1/notebooks/${params.notebookId}/notes`)
+    fetch(
+      `http://localhost:3000/api/v1/groups/${params.groupId}/notebooks/${
+        params.notebookId
+      }/notes`
+    )
       .then(resp => resp.json())
       .then(notes =>
         this.setState({
