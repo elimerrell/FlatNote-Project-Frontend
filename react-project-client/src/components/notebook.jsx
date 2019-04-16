@@ -118,18 +118,30 @@ class Notebook extends Component {
         <div className="modal-box">
           <Box>
             <form action="submit" onSubmit={this.handleSubmit}>
-              <input
-                name="title"
-                value={this.state.currentNote.title}
-                onChange={this.handleChange}
-              />
-              <textarea
-                name="content"
-                rows="10"
-                cols="70"
-                onChange={this.handleChange}
-                value={this.state.currentNote.content}
-              />
+              <div class="field">
+                <label class="label">Title</label>
+                <div class="control">
+                  <input
+                    name="title"
+                    class="input"
+                    type="text"
+                    value={this.state.currentNote.title}
+                    onChange={this.handleChange}
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Content</label>
+                <div class="control">
+                  <textarea
+                    name="content"
+                    class="textarea"
+                    value={this.state.currentNote.content}
+                    onChange={this.handleChange}
+                  />
+                </div>
+              </div>
               <div className="color-picker-wrapper">
                 <CirclePicker
                   className="color-picker"
