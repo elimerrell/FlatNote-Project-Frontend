@@ -12,8 +12,8 @@ import Navbar from "./components/navbar";
 
 ReactDOM.render(
   <Router>
-    <Navbar />
     <React.Fragment>
+      <Navbar />
       <Route exact path="/" component={Dashboard} />
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/signup" component={SignUp} />

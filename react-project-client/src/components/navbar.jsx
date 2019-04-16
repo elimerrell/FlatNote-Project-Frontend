@@ -6,14 +6,7 @@ class Navbar extends Component {
     this.state = {};
   }
   render() {
-    return (
-      <h1>
-        This is a{" "}
-        <a href="https://couds.github.io/react-bulma-components/?selectedKind=Navbar&selectedStory=Default&full=0&addons=1&stories=1&panelRight=0&addonPanel=storybook%2Fstories%2Fstories-panel">
-          Navbar
-        </a>
-      </h1>
-    );
+    return <h1>This is a Navbar</h1>;
   }
 }
 
