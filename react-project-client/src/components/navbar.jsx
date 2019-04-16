@@ -2,15 +2,19 @@ import React, { Component } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import Fab from "@material-ui/core/Fab";
 import MenuIcon from "@material-ui/icons/Menu";
 import Typography from "@material-ui/core/Typography";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import { withRouter } from "react-router-dom";
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      anchorEl: null
+    };
     this.classes = {
       appBar: {
         top: "auto",
@@ -30,13 +34,32 @@ class Navbar extends Component {
       }
     };
   }
+  handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
   render() {
+    const { anchorEl } = this.state;
     return (
       <AppBar id="navbar" position="fixed" color="primary">
         {console.log(this.classes.appBar)}
         <Toolbar style={this.classes.toolbar}>
           <IconButton color="inherit" aria-label="Open drawer">
-            <MenuIcon />
+            <MenuIcon onClick={this.handleClick} />
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={this.handleClose}
+              onClick={() => this.sendPage()}
+            >
+              <MenuItem>Dashboard</MenuItem>
+              <MenuItem>About</MenuItem>
+            </Menu>
           </IconButton>
           <Typography
             variant="h6"
@@ -56,4 +79,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);
