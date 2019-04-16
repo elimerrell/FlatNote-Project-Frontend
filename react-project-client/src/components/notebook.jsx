@@ -10,6 +10,7 @@ import Modal from "react-bulma-components/lib/components/modal";
 import NewNote from "./newnote";
 import { CirclePicker } from "react-color";
 import Draggable from "react-draggable";
+import { FaTrashAlt } from "react-icons/fa";
 
 class Notebook extends Component {
   constructor(props) {
@@ -140,7 +141,7 @@ class Notebook extends Component {
                 Update
               </Button>
               <Button color="danger" onClick={this.deleteNote}>
-                Delete
+                <FaTrashAlt />
               </Button>
             </form>
           </Box>
