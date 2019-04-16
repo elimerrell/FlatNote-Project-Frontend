@@ -36,8 +36,7 @@ class Dashboard extends Component {
       <Container>
         <div className="dashboard">
           <Columns>
-            {// this.state.notebooks.length > 0 ? this.state.notebooks.map(notebook => {return <Link to={`/notebook/${notebook.id}`} component={notebook}><Columns.Column size={3}><NotebookCard notebook={notebook} /></Columns.Column></Link>}) : null
-            this.state.notebooks.length > 0
+            {this.state.notebooks.length > 0
               ? this.state.notebooks.map(notebook => {
                   return (
                     <Columns.Column size={3}>

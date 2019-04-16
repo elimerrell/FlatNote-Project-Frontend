@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Note from "./note";
 import Container from "react-bulma-components/lib/components/container";
 
-import PaperBG from '../paper_fibers.png';
+import PaperBG from "../paper_fibers.png";
 
 import Section from "react-bulma-components/lib/components/section";
 import Box from "react-bulma-components/lib/components/box";
@@ -199,16 +199,12 @@ class Notebook extends Component {
     return (
       <>
         <NewNote handleSubmit={this.handleSubmit} />
-        <Container>
+        <Container class="notebook">
           <Section>
             <Draggable bounds={{ top: 0, left: 0, right: 0, bottom: 0 }}>
               <Box>{this.mapNotes()}</Box>
             </Draggable>
-            <Modal
-              modal={{ closeOnBlur: true }}
-              show={this.state.show}
-              onClose={this.close}
-            >
+            <Modal class="modal" show={this.state.show} onClose={this.close}>
               {this.openModal()}
             </Modal>
           </Section>

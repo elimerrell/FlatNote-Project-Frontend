@@ -74,6 +74,11 @@ code {
   box-shadow: 0 10px 12px rgba(0, 0, 0, 0.2);
 }
 
+.modal {
+  z-index: 1000;
+  padding: 150px;
+}
+
 .modal-box {
   text-align: center;
   margin: auto;
@@ -81,7 +86,8 @@ code {
 }
 
 .new-note {
-  margin: auto;
+  margin-top: 200px;
+  // margin: auto;
   z-index: 10;
   background-color: rgb(164, 198, 181);
   position: fixed;
@@ -128,9 +134,22 @@ button {
 }
 
 #note-toggle {
+  margin-top: 100px;
   position: fixed;
 }
 
 Container {
   margin: auto;
+}
+
+.dashboard {
+  padding: 100px;
+}
+
+.notebook {
+  padding: 100px;
+}
+
+#navbar {
+  z-index: 10;
 }
