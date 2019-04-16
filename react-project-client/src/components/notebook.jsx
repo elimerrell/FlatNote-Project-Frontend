@@ -170,12 +170,16 @@ class Notebook extends Component {
       title: ev.target.title.value,
       content: ev.target.content.value
     };
-    let newNotes = this.state.notes.slice();
-    newNotes.push(newNote);
-    this.setState({
-      notes: newNotes
-    });
-    this.persistNote(newNote);
+    if (newNote.title.length > 0 && newNote.content.length > 0) {
+      let newNotes = this.state.notes.slice();
+      newNotes.push(newNote);
+      this.setState({
+        notes: newNotes
+      });
+      this.persistNote(newNote);
+    } else {
+      alert("Your note is empty!");
+    }
   };
 
   persistNote = newNote => {

@@ -33,23 +33,25 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="dashboard">
-        <Columns>
-          {// this.state.notebooks.length > 0 ? this.state.notebooks.map(notebook => {return <Link to={`/notebook/${notebook.id}`} component={notebook}><Columns.Column size={3}><NotebookCard notebook={notebook} /></Columns.Column></Link>}) : null
-          this.state.notebooks.length > 0
-            ? this.state.notebooks.map(notebook => {
-                return (
-                  <Columns.Column size={3}>
-                    <NotebookCard
-                      notebook={notebook}
-                      handleClick={this.handleClick}
-                    />
-                  </Columns.Column>
-                );
-              })
-            : null}
-        </Columns>
-      </div>
+      <Container>
+        <div className="dashboard">
+          <Columns>
+            {// this.state.notebooks.length > 0 ? this.state.notebooks.map(notebook => {return <Link to={`/notebook/${notebook.id}`} component={notebook}><Columns.Column size={3}><NotebookCard notebook={notebook} /></Columns.Column></Link>}) : null
+            this.state.notebooks.length > 0
+              ? this.state.notebooks.map(notebook => {
+                  return (
+                    <Columns.Column size={3}>
+                      <NotebookCard
+                        notebook={notebook}
+                        handleClick={this.handleClick}
+                      />
+                    </Columns.Column>
+                  );
+                })
+              : null}
+          </Columns>
+        </div>
+      </Container>
     );
   }
 }

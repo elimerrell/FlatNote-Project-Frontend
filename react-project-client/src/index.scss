@@ -50,8 +50,7 @@ code {
 }
 
 .dashboard {
-  margin: 50px;
-  display: flex;
+  margin: auto;
   align-content: center;
   justify-content: center;
 }
@@ -82,12 +81,14 @@ code {
 }
 
 .new-note {
+  margin: auto;
   z-index: 10;
-  background-color: rgb(115, 155, 135);
-  position: sticky;
+  background-color: rgb(164, 198, 181);
+  position: fixed;
   border-radius: 6px;
   padding: 20px;
-  max-width: 800px;
+  min-width: 300px;
+  max-width: 600px;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -124,4 +125,12 @@ button {
 .control {
   text-align: center;
   max-width: 600px;
+}
+
+#note-toggle {
+  position: fixed;
+}
+
+Container {
+  margin: auto;
 }
