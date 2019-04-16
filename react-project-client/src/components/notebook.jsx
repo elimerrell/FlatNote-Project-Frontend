@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import Note from "./note";
 import Container from "react-bulma-components/lib/components/container";
 
+import PaperBG from '../paper_fibers.png';
+
 import Section from "react-bulma-components/lib/components/section";
 import Box from "react-bulma-components/lib/components/box";
 import Button from "react-bulma-components/lib/components/button";
