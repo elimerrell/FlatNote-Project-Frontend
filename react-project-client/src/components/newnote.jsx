@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Button from "react-bulma-components/lib/components/button";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaMinus } from "react-icons/fa";
 
 class NewNote extends Component {
   constructor(props) {
@@ -55,7 +55,7 @@ class NewNote extends Component {
     return (
       <div>
         <Button onClick={() => this.toggleButton()}>
-          <FaPlus />
+          {this.state.toggled === false ? <FaPlus /> : <FaMinus />}
         </Button>
         {this.state.toggled ? this.showNoteForm() : null}
       </div>
