@@ -144,10 +144,6 @@ button {
   position: fixed;
 }
 
-Container {
-  margin: auto;
-}
-
 .dashboard {
   padding: 100px;
 }
@@ -162,7 +158,18 @@ Container {
 #new-note {
   background-color: green;
 }
-
+#root {
+  margin: 65px 0 0 0;
+}
+.container {
+  padding: 40px 180px;
+}
 .sign-in {
-  margin-top: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  form {
+    min-width: 400px;
+  }
 }
