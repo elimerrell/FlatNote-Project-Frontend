@@ -75,7 +75,9 @@ class Notebook extends Component {
 
   patchNote = () => {
     const note = this.state.currentNote;
-    {console.log(note)}
+    {
+      console.log(note);
+    }
     fetch(
       `http://localhost:3000/api/v1/users/${USER}/notebooks/${
         this.state.currentNote.notebook_id
@@ -122,8 +124,8 @@ class Notebook extends Component {
   };
 
   handleColorChange = ev => {
-    const note = this.state.currentNote
-    note.color = ev.hex
+    const note = this.state.currentNote;
+    note.color = ev.hex;
     this.setState({
       currentNote: note
     });
@@ -202,11 +204,6 @@ class Notebook extends Component {
       color: "#FFFFA5"
     };
     if (newNote.title.length > 0 && newNote.content.length > 0) {
-      let newNotes = this.state.notes.slice();
-      newNotes.push(newNote);
-      this.setState({
-        notes: newNotes
-      });
       this.persistNote(newNote);
     } else {
       alert("Your note is empty!");
@@ -230,7 +227,17 @@ class Notebook extends Component {
         },
         body: JSON.stringify(newNote)
       }
-    );
+    )
+      .then(resp => resp.json())
+      .then(newNote => this.handleNew(newNote));
+  };
+
+  handleNew = newNote => {
+    let allNotes = this.state.notes.filter(note => note.id !== newNote.id);
+    allNotes.push(newNote);
+    this.setState({
+      notes: allNotes
+    });
   };
 
   render() {

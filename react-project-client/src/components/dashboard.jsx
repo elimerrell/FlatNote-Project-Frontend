@@ -1,40 +1,41 @@
 import React, { Component } from "react";
 import Columns from "react-bulma-components/lib/components/columns";
 import Container from "react-bulma-components/lib/components/container";
-import Section from "react-bulma-components/lib/components/section";
-import Box from "react-bulma-components/lib/components/box";
 import NotebookCard from "./notebookCard";
 import NewNotebook from "./newnotebook";
 import { withRouter } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
-const USER = localStorage.getItem("user");
-const NOTEBOOKS = `http://localhost:3000/api/v1/users/${USER}/notebooks`;
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notebooks: []
+      notebooks: [],
+      currentUser: localStorage.getItem("user")
     };
-    if (localStorage.getItem("user")) {
-      this.getNotebook();
-    }
   }
 
-  getNotebook = () => {
-    fetch(NOTEBOOKS, {
-      method: "GET",
-      headers: {
-        Authorization: localStorage.getItem("token")
-      }
-    })
-      .then(resp => resp.json())
-      .then(notebooks =>
-        this.setState({
-          notebooks
-        })
-      );
-  };
+  componentDidMount() {
+    if (localStorage.getItem("user")) {
+      fetch(
+        `http://localhost:3000/api/v1/users/${
+          this.state.currentUser
+        }/notebooks`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: localStorage.getItem("token")
+          }
+        }
+      )
+        .then(resp => resp.json())
+        .then(notebooks =>
+          this.setState({
+            notebooks
+          })
+        );
+    }
+  }
 
   handleClick = notebook => {
     console.log(notebook);
@@ -57,22 +58,23 @@ class Dashboard extends Component {
   };
 
   persistNotebook = newNotebook => {
-    fetch(`http://localhost:3000/api/v1/users/${USER}/notebooks/`, {
-      method: "POST",
-      headers: {
-        Authorization: localStorage.getItem("token"),
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newNotebook)
-    });
+    fetch(
+      `http://localhost:3000/api/v1/users/${this.state.currentUser}/notebooks`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newNotebook)
+      }
+    );
   };
 
   render() {
     return (
       <Container>
-        {
-          localStorage.getItem("token") ? null : <Redirect to="/" />
-        }
+        {localStorage.getItem("token") ? null : <Redirect to="/" />}
         <NewNotebook handleSubmit={this.handleSubmit} />
         <div className="dashboard">
           <Columns>
