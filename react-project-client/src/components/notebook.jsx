@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import Note from "./note";
 import Container from "react-bulma-components/lib/components/container";
 
+import PaperBG from "../paper_fibers.png";
+
 import Section from "react-bulma-components/lib/components/section";
 import Box from "react-bulma-components/lib/components/box";
 import Button from "react-bulma-components/lib/components/button";
@@ -12,6 +14,7 @@ import { CirclePicker } from "react-color";
 import Draggable from "react-draggable";
 import { FaTrashAlt } from "react-icons/fa";
 
+const USER = localStorage.getItem("user");
 class Notebook extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +31,17 @@ class Notebook extends Component {
     const {
       match: { params }
     } = this.props;
-    fetch(`http://localhost:3000/api/v1/notebooks/${params.notebookId}/notes`)
+    fetch(
+      `http://localhost:3000/api/v1/users/${USER}/notebooks/${
+        params.notebookId
+      }/notes`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      }
+    )
       .then(resp => resp.json())
       .then(notes =>
         this.setState({
@@ -74,12 +87,15 @@ class Notebook extends Component {
     const note = this.state.currentNote;
     note.color = this.state.color;
     fetch(
-      `http://localhost:3000/api/v1/notebooks/${
+      `http://localhost:3000/api/v1/users/${USER}/notebooks/${
         this.state.currentNote.notebook_id
       }/notes/${this.state.currentNote.id}`,
       {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(note)
       }
     );
@@ -95,12 +111,15 @@ class Notebook extends Component {
     });
     const note = this.state.currentNote;
     fetch(
-      `http://localhost:3000/api/v1/notebooks/${
+      `http://localhost:3000/api/v1/users/${USER}/notebooks/${
         this.state.currentNote.notebook_id
       }/notes/${this.state.currentNote.id}`,
       {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(note)
       }
     );
@@ -118,21 +137,47 @@ class Notebook extends Component {
         <div className="modal-box">
           <Box>
             <form action="submit" onSubmit={this.handleSubmit}>
-              <input
-                name="title"
-                value={this.state.currentNote.title}
-                onChange={this.handleChange}
-              />
-              <textarea
-                name="content"
-                rows="10"
-                cols="70"
-                onChange={this.handleChange}
-                value={this.state.currentNote.content}
-              />
+              <div class="field">
+                <label class="label">Title</label>
+                <div class="control">
+                  <input
+                    name="title"
+                    class="input"
+                    type="text"
+                    value={this.state.currentNote.title}
+                    onChange={this.handleChange}
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Content</label>
+                <div class="control">
+                  <textarea
+                    name="content"
+                    class="textarea"
+                    value={this.state.currentNote.content}
+                    onChange={this.handleChange}
+                  />
+                </div>
+              </div>
               <div className="color-picker-wrapper">
                 <CirclePicker
                   className="color-picker"
+                  colors={[
+                    "#FF9AA2",
+                    "#FFB7B2",
+                    "#FFDAC1",
+                    "#FFFFA5",
+                    "#E2F0CB",
+                    "#B5EAD7",
+                    "#C7CEEA",
+                    "#F5E1Fd",
+                    "#CE9DD9",
+                    "#E9E2D7",
+                    "#BFD5d3",
+                    "#D9FFFF"
+                  ]}
                   noteColor={this.state.noteColor}
                   onChange={this.handleColorChange}
                 />
@@ -154,24 +199,36 @@ class Notebook extends Component {
     ev.preventDefault();
     let newNote = {
       title: ev.target.title.value,
-      content: ev.target.content.value
+      content: ev.target.content.value,
+      color: "#FFFFA5"
     };
-    let newNotes = this.state.notes.slice();
-    newNotes.push(newNote);
-    this.setState({
-      notes: newNotes
-    });
-    this.persistNote(newNote);
+    if (newNote.title.length > 0 && newNote.content.length > 0) {
+      let newNotes = this.state.notes.slice();
+      newNotes.push(newNote);
+      this.setState({
+        notes: newNotes
+      });
+      this.persistNote(newNote);
+    } else {
+      alert("Your note is empty!");
+    }
   };
 
   persistNote = newNote => {
+    const {
+      match: { params }
+    } = this.props;
+    console.log("persist note function");
     fetch(
-      `http://localhost:3000/api/v1/notebooks/${
-        this.state.currentNote.notebook_id
+      `http://localhost:3000/api/v1/users/${USER}/notebooks/${
+        params.notebookId
       }/notes`,
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(newNote)
       }
     );
@@ -181,16 +238,12 @@ class Notebook extends Component {
     return (
       <>
         <NewNote handleSubmit={this.handleSubmit} />
-        <Container>
+        <Container class="notebook">
           <Section>
             <Draggable bounds={{ top: 0, left: 0, right: 0, bottom: 0 }}>
               <Box>{this.mapNotes()}</Box>
             </Draggable>
-            <Modal
-              modal={{ closeOnBlur: true }}
-              show={this.state.show}
-              onClose={this.close}
-            >
+            <Modal class="modal" show={this.state.show} onClose={this.close}>
               {this.openModal()}
             </Modal>
           </Section>

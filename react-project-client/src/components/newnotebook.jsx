@@ -3,7 +3,7 @@ import Button from "react-bulma-components/lib/components/button";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import Container from "react-bulma-components/lib/components/container";
 
-class NewNote extends Component {
+class NewNotebook extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,8 +18,8 @@ class NewNote extends Component {
     this.setState({
       title: ev.target.value
     });
-    let newNote = {};
-    newNote.title = this.state.title;
+    let newNotebook = {};
+    newNotebook.title = this.state.title;
   };
 
   clearInputs = () => {
@@ -36,6 +36,18 @@ class NewNote extends Component {
         <div className="new-note">
           <form onSubmit={this.props.handleSubmit}>
             <div class="field">
+              <label class="label">Category</label>
+              <div class="control">
+                <input
+                  name="category"
+                  class="input"
+                  type="text"
+                  placeholder="Note Title"
+                />
+              </div>
+            </div>
+
+            <div class="field">
               <label class="label">Title</label>
               <div class="control">
                 <input
@@ -48,10 +60,10 @@ class NewNote extends Component {
             </div>
 
             <div class="field">
-              <label class="label">Content</label>
+              <label class="label">Description</label>
               <div class="control">
                 <textarea
-                  name="content"
+                  name="description"
                   class="textarea"
                   placeholder="Note Content"
                 />
@@ -93,4 +105,4 @@ class NewNote extends Component {
   }
 }
 
-export default NewNote;
+export default NewNotebook;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Box from "react-bulma-components/lib/components/box";
 import Container from "react-bulma-components/lib/components/container";
 import {
   Field,
@@ -33,88 +34,91 @@ class SignUp extends Component {
       body: JSON.stringify(newUser)
     })
       .then(response => response.json())
-      .then(user => this.authenticateUser(user));
+      .then(() => this.authenticateUser(newUser));
   };
 
-  authenticateUser = user => {
-    // debugger
+  authenticateUser = newUser => {
+    let authUser = {
+      email: newUser.email,
+      password: newUser.password
+    };
     fetch("http://localhost:3000/authenticate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: user.email,
-        password: user.password_digest
-      })
+      body: JSON.stringify(authUser)
     })
-      .then(response => response.json())
-      .then(json => this.assignToken(json.auth_token));
-  };
-
-  assignToken = token => {
-    window.localStorage.setItem("authToken", token);
-    this.setStateToken(token);
-  };
-
-  setStateToken = token => {
-    this.setState({ authToken: token });
-  };
-
-  checkToken = () => {
-    if (window.localStorage.getItem("authToken")) {
-      console.log(window.localStorage.getItem("authToken"));
-      this.setState({ authToken: window.localStorage.getItem("authToken") });
-    } else {
-      console.log("Token not found");
-    }
+      .then(resp => resp.json())
+      .then(jwt => {
+        localStorage.setItem("token", jwt.auth_token);
+        this.props.history.push("/dashboard");
+      });
   };
 
   render() {
     return (
-      <Container fluid>
-        <form onSubmit={this.handleSubmit}>
-          <Field>
-            <Label>Name</Label>
-            <Control>
-              <Input placeholder="Text input" />
-            </Control>
-          </Field>
-          <Field>
-            <Label>Email</Label>
-            <Control>
-              <Input type="email" placeholder="Email input" />
-            </Control>
-            {/* <Help color="danger">This email is invalid</Help> */}
-          </Field>
-          <Field>
-            <Label>Password</Label>
-            <Control>
-              <Input
-                // color="success"
-                type="password"
-                // placeholder="Text input"
-                // value="bulma"
-              />
-            </Control>
-            {/* <Help color="success">This username is available</Help> */}
-          </Field>
-          <Field>
-            <Label>Confirm Password</Label>
-            <Control>
-              <Input
-                // color="success"
-                type="password"
-                // placeholder="Text input"
-                // value="bulma"
-              />
-            </Control>
-          </Field>
-          <Button type="submit" color="info">
-            Sign Up
-          </Button>
-        </form>
-        <Link to="/dashboard">
-          <Button color="info">Dashboard</Button>
-        </Link>
+      <Container>
+      <Box>
+        <div className="sign-in">
+          <form onSubmit={this.handleSubmit}>
+            <div className="field">
+              <label className="label">Name</label>
+              <div className="control">
+                <input
+                  name="name"
+                  className="input"
+                  type="text"
+                  placeholder="Name"
+                />
+              </div>
+              </div>
+              <div className="field">
+                <label className="label">Email</label>
+                <div className="control">
+                  <input
+                    name="email"
+                    className="input"
+                    type="email"
+                    placeholder="Email"
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Password</label>
+                <div className="control">
+                  <input
+                    name="password"
+                    className="input"
+                    type="password"
+                    placeholder="Password"
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Confirm Password</label>
+                <div className="control">
+                  <input
+                    name="password_confirmation"
+                    className="input"
+                    type="password"
+                    placeholder="Password Confirmation"
+                  />
+                </div>
+              </div>
+
+              <div className="field is-grouped">
+                <div className="control">
+                  <button
+                    id="new-note"
+                    onClick={() => this.clearInputs}
+                    className="button is-link"
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              </div>
+          </form>
+        </div>
+      </Box>
       </Container>
     );
   }
