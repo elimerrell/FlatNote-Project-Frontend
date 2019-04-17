@@ -75,7 +75,6 @@ class Notebook extends Component {
 
   patchNote = () => {
     const note = this.state.currentNote;
-    // note.color = this.state.currentNote.color;
     {console.log(note)}
     fetch(
       `http://localhost:3000/api/v1/users/${USER}/notebooks/${
