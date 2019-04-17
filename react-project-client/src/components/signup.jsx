@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Box from "react-bulma-components/lib/components/box";
 import Container from "react-bulma-components/lib/components/container";
 import {
   Field,
@@ -56,58 +57,59 @@ class SignUp extends Component {
   render() {
     return (
       <Container>
-        <div class="sign-in">
+      <Box>
+        <div className="sign-in">
           <form onSubmit={this.handleSubmit}>
-            <div class="field">
-              <label class="label">Name</label>
-              <div class="control">
+            <div className="field">
+              <label className="label">Name</label>
+              <div className="control">
                 <input
                   name="name"
-                  class="input"
+                  className="input"
                   type="text"
                   placeholder="Name"
                 />
               </div>
-              <div class="field">
-                <label class="label">Email</label>
-                <div class="control">
+              <div className="field">
+                <label className="label">Email</label>
+                <div className="control">
                   <input
                     name="email"
-                    class="input"
+                    className="input"
                     type="email"
                     placeholder="Email"
                   />
                 </div>
               </div>
-              <div class="field">
-                <label class="label">Password</label>
-                <div class="control">
+              <div className="field">
+                <label className="label">Password</label>
+                <div className="control">
                   <input
                     name="password"
-                    class="input"
+                    className="input"
                     type="password"
                     placeholder="Password"
                   />
                 </div>
               </div>
-              <div class="field">
-                <label class="label">Confirm Password</label>
-                <div class="control">
+              <div className="field">
+                <label className="label">Confirm Password</label>
+                <div className="control">
                   <input
                     name="password_confirmation"
-                    class="input"
+                    className="input"
                     type="password"
                     placeholder="Password Confirmation"
                   />
                 </div>
               </div>
 
-              <div class="field is-grouped">
-                <div class="control">
+              <div className="field is-grouped">
+                <div className="control">
                   <button
                     id="new-note"
                     onClick={() => this.clearInputs}
-                    class="button is-link"
+                    className="button is-link"
                   >
                     Sign Up
                   </button>
@@ -116,6 +118,7 @@ class SignUp extends Component {
             </div>
           </form>
         </div>
+      </Box>
       </Container>
     );
   }

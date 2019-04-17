@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Box from "react-bulma-components/lib/components/box";
 import Container from "react-bulma-components/lib/components/container";
 import { withRouter } from "react-router-dom";
 
@@ -38,46 +39,48 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div class="sign-in">
-        <Container>
+      <Container>
+      <Box className="wrapper">
+        <div className="sign-in">
           <form onSubmit={this.handleSubmit}>
-            <div class="field">
-              <label class="label">Email</label>
-              <div class="control">
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control">
                 <input
                   name="email"
-                  class="input"
+                  className="input"
                   type="email"
                   placeholder="Email"
                 />
               </div>
             </div>
-            <div class="field">
-              <label class="label">Password</label>
-              <div class="control">
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control">
                 <input
                   name="password"
-                  class="input"
+                  className="input"
                   type="password"
                   placeholder="Password"
                 />
               </div>
             </div>
 
-            <div class="field is-grouped">
-              <div class="control">
+            <div className="field is-grouped">
+              <div className="control">
                 <button
                   id="new-note"
                   onClick={() => this.clearInputs}
-                  class="button is-link"
+                  className="button is-link"
                 >
                   Submit
                 </button>
               </div>
             </div>
           </form>
-        </Container>
-      </div>
+        </div>
+      </Box>
+      </Container>
     );
   }
 }
