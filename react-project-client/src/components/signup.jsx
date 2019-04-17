@@ -33,7 +33,7 @@ class SignUp extends Component {
       body: JSON.stringify(newUser)
     })
       .then(response => response.json())
-      .then(this.authenticateUser(newUser));
+      .then(() => this.authenticateUser(newUser));
   };
 
   authenticateUser = newUser => {
@@ -47,7 +47,10 @@ class SignUp extends Component {
       body: JSON.stringify(authUser)
     })
       .then(resp => resp.json())
-      .then(jwt => localStorage.setItem("token", jwt.auth_token));
+      .then(jwt => {
+        localStorage.setItem("token", jwt.auth_token);
+        this.props.history.push("/dashboard");
+      });
   };
 
   render() {
@@ -112,9 +115,6 @@ class SignUp extends Component {
               </div>
             </div>
           </form>
-          <Link to="/dashboard">
-            <Button color="info">Dashboard</Button>
-          </Link>
         </div>
       </Container>
     );
