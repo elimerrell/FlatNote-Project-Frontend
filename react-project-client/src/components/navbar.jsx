@@ -42,6 +42,15 @@ class Navbar extends Component {
     this.setState({ anchorEl: null });
   };
 
+  sendPage = ev => {
+    console.log("reached send page");
+    if (ev.target.textContent === "Dashboard") {
+      this.props.history.push("/");
+    } else {
+      this.props.history.push("/about");
+    }
+  };
+
   render() {
     const { anchorEl } = this.state;
     return (
@@ -55,10 +64,10 @@ class Navbar extends Component {
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
               onClose={this.handleClose}
-              onClick={() => this.sendPage()}
+              onClick={ev => this.sendPage(ev)}
             >
-              <MenuItem>Dashboard</MenuItem>
-              <MenuItem>About</MenuItem>
+              <MenuItem onClick={this.handleClose}>Dashboard</MenuItem>
+              <MenuItem onClick={this.handleClose}>About</MenuItem>
             </Menu>
           </IconButton>
           <Typography

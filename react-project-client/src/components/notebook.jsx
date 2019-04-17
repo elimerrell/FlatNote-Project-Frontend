@@ -65,6 +65,7 @@ class Notebook extends Component {
   };
 
   handleColorChange = ev => {
+    debugger;
     let note = document.getElementById(this.state.currentNote.id);
     note.style.backgroundColor = ev.hex;
     this.setState({
@@ -147,6 +148,20 @@ class Notebook extends Component {
               <div className="color-picker-wrapper">
                 <CirclePicker
                   className="color-picker"
+                  colors={[
+                    "#FF9AA2",
+                    "#FFB7B2",
+                    "#FFDAC1",
+                    "#FFFFA5",
+                    "#E2F0CB",
+                    "#B5EAD7",
+                    "#C7CEEA",
+                    "#F5E1Fd",
+                    "#CE9DD9",
+                    "#E9E2D7",
+                    "#BFD5d3",
+                    "#D9FFFF"
+                  ]}
                   noteColor={this.state.noteColor}
                   onChange={this.handleColorChange}
                 />
@@ -168,7 +183,8 @@ class Notebook extends Component {
     ev.preventDefault();
     let newNote = {
       title: ev.target.title.value,
-      content: ev.target.content.value
+      content: ev.target.content.value,
+      color: "#FFFFA5"
     };
     if (newNote.title.length > 0 && newNote.content.length > 0) {
       let newNotes = this.state.notes.slice();

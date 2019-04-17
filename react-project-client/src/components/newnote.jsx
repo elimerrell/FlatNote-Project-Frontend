@@ -9,6 +9,7 @@ class NewNote extends Component {
     this.state = {
       title: "",
       content: "",
+      color: "",
       toggled: false
     };
   }
@@ -24,7 +25,8 @@ class NewNote extends Component {
   clearInputs = () => {
     this.setState({
       title: "",
-      content: ""
+      content: "",
+      color: ""
     });
   };
 
@@ -58,7 +60,11 @@ class NewNote extends Component {
 
             <div class="field is-grouped">
               <div class="control">
-                <button onClick={() => this.clearInputs} class="button is-link">
+                <button
+                  id="new-note"
+                  onClick={() => this.clearInputs}
+                  class="button is-link"
+                >
                   Submit
                 </button>
               </div>
