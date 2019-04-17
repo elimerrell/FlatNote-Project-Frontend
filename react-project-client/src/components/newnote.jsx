@@ -30,11 +30,17 @@ class NewNote extends Component {
     });
   };
 
+  putNewNote = ev => {
+    ev.preventDefault();
+    this.props.handleSubmit(ev)
+    this.setState({toggled: !this.state.toggled})
+  }
+
   showNoteForm = () => {
     return (
       <Container>
         <div className="new-note">
-          <form onSubmit={this.props.handleSubmit}>
+          <form onSubmit={this.putNewNote}>
             <div class="field">
               <label class="label">Title</label>
               <div class="control">
