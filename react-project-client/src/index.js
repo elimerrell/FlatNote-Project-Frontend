@@ -14,7 +14,8 @@ ReactDOM.render(
   <Router>
     <React.Fragment>
       <Navbar />
-      <Route exact path="/" component={Dashboard} />
+      <Route exact path="/" component={SignIn} />
+      <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/groups" component={Groups} />

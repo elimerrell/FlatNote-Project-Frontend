@@ -6,7 +6,7 @@ import Box from "react-bulma-components/lib/components/box";
 import NotebookCard from "./notebookCard";
 import { withRouter } from "react-router-dom";
 
-const NOTEBOOKs = "http://localhost:3000/api/v1/notebooks";
+const NOTEBOOKS = "http://localhost:3000/api/v1/users/1/notebooks";
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,12 @@ class Dashboard extends Component {
   }
 
   getNotebook = () => {
-    fetch(NOTEBOOKs)
+    fetch(NOTEBOOKS, {
+      method: "GET",
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    })
       .then(resp => resp.json())
       .then(notebooks =>
         this.setState({

@@ -43,11 +43,16 @@ class Navbar extends Component {
   };
 
   sendPage = ev => {
-    console.log("reached send page");
     if (ev.target.textContent === "Dashboard") {
-      this.props.history.push("/");
-    } else {
+      this.props.history.push("/dashboard");
+    } else if (ev.target.textContent === "About") {
       this.props.history.push("/about");
+    } else if (ev.target.textContent === "Sign Out") {
+      localStorage.clear("token");
+      this.props.history.push("/signin");
+    } else if (ev.target.textContent === "Sign In") {
+      localStorage.clear("token");
+      this.props.history.push("/signin");
     }
   };
 
@@ -55,7 +60,6 @@ class Navbar extends Component {
     const { anchorEl } = this.state;
     return (
       <AppBar id="navbar" position="fixed" color="primary">
-        {console.log(this.classes.appBar)}
         <Toolbar style={this.classes.toolbar}>
           <IconButton color="inherit" aria-label="Open drawer">
             <MenuIcon onClick={this.handleClick} />
@@ -68,6 +72,11 @@ class Navbar extends Component {
             >
               <MenuItem onClick={this.handleClose}>Dashboard</MenuItem>
               <MenuItem onClick={this.handleClose}>About</MenuItem>
+              {localStorage.getItem("token") ? (
+                <MenuItem onClick={this.handleClose}>Sign Out</MenuItem>
+              ) : (
+                <MenuItem onClick={this.handleClose}>Sign In</MenuItem>
+              )}
             </Menu>
           </IconButton>
           <Typography

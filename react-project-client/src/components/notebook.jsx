@@ -30,7 +30,17 @@ class Notebook extends Component {
     const {
       match: { params }
     } = this.props;
-    fetch(`http://localhost:3000/api/v1/notebooks/${params.notebookId}/notes`)
+    fetch(
+      `http://localhost:3000/api/v1/users/1/notebooks/${
+        params.notebookId
+      }/notes`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      }
+    )
       .then(resp => resp.json())
       .then(notes =>
         this.setState({
@@ -65,7 +75,6 @@ class Notebook extends Component {
   };
 
   handleColorChange = ev => {
-    debugger;
     let note = document.getElementById(this.state.currentNote.id);
     note.style.backgroundColor = ev.hex;
     this.setState({
@@ -77,12 +86,15 @@ class Notebook extends Component {
     const note = this.state.currentNote;
     note.color = this.state.color;
     fetch(
-      `http://localhost:3000/api/v1/notebooks/${
+      `http://localhost:3000/api/v1/users/1/notebooks/${
         this.state.currentNote.notebook_id
       }/notes/${this.state.currentNote.id}`,
       {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(note)
       }
     );
@@ -98,12 +110,15 @@ class Notebook extends Component {
     });
     const note = this.state.currentNote;
     fetch(
-      `http://localhost:3000/api/v1/notebooks/${
+      `http://localhost:3000/api/v1/users/1/notebooks/${
         this.state.currentNote.notebook_id
       }/notes/${this.state.currentNote.id}`,
       {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(note)
       }
     );
@@ -200,12 +215,15 @@ class Notebook extends Component {
 
   persistNote = newNote => {
     fetch(
-      `http://localhost:3000/api/v1/notebooks/${
+      `http://localhost:3000/api/v1/users/1/notebooks/${
         this.state.currentNote.notebook_id
       }/notes`,
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(newNote)
       }
     );

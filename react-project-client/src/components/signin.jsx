@@ -1,44 +1,79 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import Container from "react-bulma-components/lib/components/container";
-import {
-  Field,
-  Control,
-  Label,
-  Input
-} from "react-bulma-components/lib/components/form";
-import Button from "react-bulma-components/lib/components/button";
+import { withRouter } from "react-router-dom";
 
 class SignIn extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      email: "",
+      password: ""
+    };
   }
+
+  handleSubmit = ev => {
+    ev.preventDefault();
+    let user = {
+      email: ev.target.email.value,
+      password: ev.target.password.value
+    };
+    fetch("http://localhost:3000/authenticate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user)
+    })
+      .then(resp => resp.json())
+      .then(jwt => this.setStorage(jwt));
+  };
+
+  setStorage = jwt => {
+    localStorage.setItem("token", jwt.auth_token);
+    this.props.history.push("/dashboard");
+    debugger;
+  };
+
   render() {
     return (
-      <Container fluid>
-        <Field>
-          <Label>Email</Label>
-          <Control>
-            <Input type="email" />
-          </Control>
-        </Field>
-        <Field>
-          <Label>Password</Label>
-          <Control>
-            <Input
-              // color="success"
-              type="password"
-              // placeholder="Text input"
-              // value="bulma"
-            />
-          </Control>
-          {/* <Help color="success">This username is available</Help> */}
-        </Field>
-        <Button type="submit" color="info">
-          Sign Up
-        </Button>
-      </Container>
+      <div class="sign-in">
+        <Container>
+          <form onSubmit={this.handleSubmit}>
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control">
+                <input
+                  name="email"
+                  class="input"
+                  type="email"
+                  placeholder="Email"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Password</label>
+              <div class="control">
+                <input
+                  name="password"
+                  class="input"
+                  type="password"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+
+            <div class="field is-grouped">
+              <div class="control">
+                <button
+                  id="new-note"
+                  onClick={() => this.clearInputs}
+                  class="button is-link"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </Container>
+      </div>
     );
   }
 }

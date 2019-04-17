@@ -33,88 +33,89 @@ class SignUp extends Component {
       body: JSON.stringify(newUser)
     })
       .then(response => response.json())
-      .then(user => this.authenticateUser(user));
+      .then(this.authenticateUser(newUser));
   };
 
-  authenticateUser = user => {
-    // debugger
+  authenticateUser = newUser => {
+    let authUser = {
+      email: newUser.email,
+      password: newUser.password
+    };
     fetch("http://localhost:3000/authenticate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: user.email,
-        password: user.password_digest
-      })
+      body: JSON.stringify(authUser)
     })
-      .then(response => response.json())
-      .then(json => this.assignToken(json.auth_token));
-  };
-
-  assignToken = token => {
-    window.localStorage.setItem("authToken", token);
-    this.setStateToken(token);
-  };
-
-  setStateToken = token => {
-    this.setState({ authToken: token });
-  };
-
-  checkToken = () => {
-    if (window.localStorage.getItem("authToken")) {
-      console.log(window.localStorage.getItem("authToken"));
-      this.setState({ authToken: window.localStorage.getItem("authToken") });
-    } else {
-      console.log("Token not found");
-    }
+      .then(resp => resp.json())
+      .then(jwt => localStorage.setItem("token", jwt.auth_token));
   };
 
   render() {
     return (
-      <Container fluid>
-        <form onSubmit={this.handleSubmit}>
-          <Field>
-            <Label>Name</Label>
-            <Control>
-              <Input placeholder="Text input" />
-            </Control>
-          </Field>
-          <Field>
-            <Label>Email</Label>
-            <Control>
-              <Input type="email" placeholder="Email input" />
-            </Control>
-            {/* <Help color="danger">This email is invalid</Help> */}
-          </Field>
-          <Field>
-            <Label>Password</Label>
-            <Control>
-              <Input
-                // color="success"
-                type="password"
-                // placeholder="Text input"
-                // value="bulma"
-              />
-            </Control>
-            {/* <Help color="success">This username is available</Help> */}
-          </Field>
-          <Field>
-            <Label>Confirm Password</Label>
-            <Control>
-              <Input
-                // color="success"
-                type="password"
-                // placeholder="Text input"
-                // value="bulma"
-              />
-            </Control>
-          </Field>
-          <Button type="submit" color="info">
-            Sign Up
-          </Button>
-        </form>
-        <Link to="/dashboard">
-          <Button color="info">Dashboard</Button>
-        </Link>
+      <Container>
+        <div class="sign-in">
+          <form onSubmit={this.handleSubmit}>
+            <div class="field">
+              <label class="label">Name</label>
+              <div class="control">
+                <input
+                  name="name"
+                  class="input"
+                  type="text"
+                  placeholder="Name"
+                />
+              </div>
+              <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                  <input
+                    name="email"
+                    class="input"
+                    type="email"
+                    placeholder="Email"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                  <input
+                    name="password"
+                    class="input"
+                    type="password"
+                    placeholder="Password"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Confirm Password</label>
+                <div class="control">
+                  <input
+                    name="password_confirmation"
+                    class="input"
+                    type="password"
+                    placeholder="Password Confirmation"
+                  />
+                </div>
+              </div>
+
+              <div class="field is-grouped">
+                <div class="control">
+                  <button
+                    id="new-note"
+                    onClick={() => this.clearInputs}
+                    class="button is-link"
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+          <Link to="/dashboard">
+            <Button color="info">Dashboard</Button>
+          </Link>
+        </div>
       </Container>
     );
   }
