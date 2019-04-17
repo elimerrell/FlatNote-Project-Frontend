@@ -16,7 +16,9 @@ class Dashboard extends Component {
     this.state = {
       notebooks: []
     };
-    this.getNotebook();
+    if (localStorage.getItem("user")) {
+      this.getNotebook();
+    }
   }
 
   getNotebook = () => {
