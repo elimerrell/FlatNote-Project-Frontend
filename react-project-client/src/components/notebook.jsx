@@ -21,8 +21,7 @@ class Notebook extends Component {
     this.state = {
       notes: [],
       currentNote: {},
-      show: false,
-      color: ""
+      show: false
     };
     this.getNotes();
   }
@@ -58,7 +57,6 @@ class Notebook extends Component {
     this.setState({
       currentNote: note
     });
-    console.log(this.state.currentNote);
   };
 
   mapNotes = () => {
@@ -75,17 +73,10 @@ class Notebook extends Component {
     this.setState({ currentNote: currentNoteValue });
   };
 
-  handleColorChange = ev => {
-    let note = document.getElementById(this.state.currentNote.id);
-    note.style.backgroundColor = ev.hex;
-    this.setState({
-      color: ev.hex
-    });
-  };
-
   patchNote = () => {
     const note = this.state.currentNote;
-    note.color = this.state.color;
+    // note.color = this.state.currentNote.color;
+    {console.log(note)}
     fetch(
       `http://localhost:3000/api/v1/users/${USER}/notebooks/${
         this.state.currentNote.notebook_id
@@ -131,6 +122,14 @@ class Notebook extends Component {
     this.patchNote();
   };
 
+  handleColorChange = ev => {
+    const note = this.state.currentNote
+    note.color = ev.hex
+    this.setState({
+      currentNote: note
+    });
+  };
+
   openModal = () => {
     return (
       <Container>
@@ -164,6 +163,7 @@ class Notebook extends Component {
               <div className="color-picker-wrapper">
                 <CirclePicker
                   className="color-picker"
+                  color={this.state.currentNote.color}
                   colors={[
                     "#FF9AA2",
                     "#FFB7B2",
