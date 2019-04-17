@@ -56,7 +56,7 @@ class SignUp extends Component {
 
   render() {
     return (
-      <Container>
+      <Container className="sign-in-container">
       <Box>
         <div className="sign-in">
           <form onSubmit={this.handleSubmit}>

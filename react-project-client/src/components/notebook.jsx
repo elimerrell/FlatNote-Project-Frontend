@@ -137,12 +137,12 @@ class Notebook extends Component {
         <div className="modal-box">
           <Box>
             <form action="submit" onSubmit={this.handleSubmit}>
-              <div class="field">
-                <label class="label">Title</label>
-                <div class="control">
+              <div className="field">
+                <label className="label">Title</label>
+                <div className="control">
                   <input
                     name="title"
-                    class="input"
+                    className="input"
                     type="text"
                     value={this.state.currentNote.title}
                     onChange={this.handleChange}
@@ -150,12 +150,12 @@ class Notebook extends Component {
                 </div>
               </div>
 
-              <div class="field">
-                <label class="label">Content</label>
-                <div class="control">
+              <div className="field">
+                <label className="label">Content</label>
+                <div className="control">
                   <textarea
                     name="content"
-                    class="textarea"
+                    className="textarea"
                     value={this.state.currentNote.content}
                     onChange={this.handleChange}
                   />

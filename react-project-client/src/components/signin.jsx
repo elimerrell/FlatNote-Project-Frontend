@@ -39,7 +39,7 @@ class SignIn extends Component {
 
   render() {
     return (
-      <Container>
+      <Container className="sign-in-container">
       <Box className="wrapper">
         <div className="sign-in">
           <form onSubmit={this.handleSubmit}>
