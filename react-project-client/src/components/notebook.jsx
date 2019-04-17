@@ -14,6 +14,7 @@ import { CirclePicker } from "react-color";
 import Draggable from "react-draggable";
 import { FaTrashAlt } from "react-icons/fa";
 
+const USER = localStorage.getItem("user");
 class Notebook extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +32,7 @@ class Notebook extends Component {
       match: { params }
     } = this.props;
     fetch(
-      `http://localhost:3000/api/v1/users/1/notebooks/${
+      `http://localhost:3000/api/v1/users/${USER}/notebooks/${
         params.notebookId
       }/notes`,
       {
@@ -86,7 +87,7 @@ class Notebook extends Component {
     const note = this.state.currentNote;
     note.color = this.state.color;
     fetch(
-      `http://localhost:3000/api/v1/users/1/notebooks/${
+      `http://localhost:3000/api/v1/users/${USER}/notebooks/${
         this.state.currentNote.notebook_id
       }/notes/${this.state.currentNote.id}`,
       {
@@ -110,7 +111,7 @@ class Notebook extends Component {
     });
     const note = this.state.currentNote;
     fetch(
-      `http://localhost:3000/api/v1/users/1/notebooks/${
+      `http://localhost:3000/api/v1/users/${USER}/notebooks/${
         this.state.currentNote.notebook_id
       }/notes/${this.state.currentNote.id}`,
       {
@@ -215,7 +216,7 @@ class Notebook extends Component {
 
   persistNote = newNote => {
     fetch(
-      `http://localhost:3000/api/v1/users/1/notebooks/${
+      `http://localhost:3000/api/v1/users/${USER}/notebooks/${
         this.state.currentNote.notebook_id
       }/notes`,
       {

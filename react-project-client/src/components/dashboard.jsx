@@ -6,7 +6,8 @@ import Box from "react-bulma-components/lib/components/box";
 import NotebookCard from "./notebookCard";
 import { withRouter } from "react-router-dom";
 
-const NOTEBOOKS = "http://localhost:3000/api/v1/users/1/notebooks";
+const USER = localStorage.getItem("user");
+const NOTEBOOKS = `http://localhost:3000/api/v1/users/${USER}/notebooks`;
 class Dashboard extends Component {
   constructor(props) {
     super(props);

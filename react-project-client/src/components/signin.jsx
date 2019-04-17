@@ -27,9 +27,13 @@ class SignIn extends Component {
   };
 
   setStorage = jwt => {
+    let jwtArray = jwt.auth_token.split(".");
+    let decode = jwtArray[1];
+    let decodedString = atob(decode);
+    let user_id = JSON.parse(decodedString).user_id;
     localStorage.setItem("token", jwt.auth_token);
+    localStorage.setItem("user", user_id);
     this.props.history.push("/dashboard");
-    debugger;
   };
 
   render() {

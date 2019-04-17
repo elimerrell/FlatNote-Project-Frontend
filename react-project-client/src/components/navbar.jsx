@@ -51,7 +51,8 @@ class Navbar extends Component {
       localStorage.clear("token");
       this.props.history.push("/signin");
     } else if (ev.target.textContent === "Sign In") {
-      localStorage.clear("token");
+      localStorage.clear("token", "user");
+      debugger;
       this.props.history.push("/signin");
     }
   };
