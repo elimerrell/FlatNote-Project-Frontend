@@ -61,7 +61,7 @@ code {
   padding: 20px;
   border-radius: 6px;
   min-width: 200px;
-  max-width: 400px;
+  max-width: 240px;
   min-height: 150px;
   max-height: 400px;
   margin: 10px;
@@ -175,14 +175,29 @@ button {
   }
 }
 .box {
-  max-width: 640px;
+  display: flex;
+  width: 100%;
 }
-.sign-in {
+.sign-in-container, .sign-in {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
   form {
     min-width: 400px;
+    padding: 20px;
+  }
+  .box {
+    max-width: 640px;
+    width: auto;
+  }
+}
+.notebook {
+  padding: 0 60px;
+  .section {
+    .box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
   }
 }
