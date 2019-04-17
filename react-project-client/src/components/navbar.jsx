@@ -87,9 +87,9 @@ class Navbar extends Component {
             FlatNote
           </Typography>
           <div>
-            <IconButton color="inherit">
+            {/* <IconButton color="inherit">
               <MoreIcon />
-            </IconButton>
+            </IconButton> */}
           </div>
         </Toolbar>
       </AppBar>

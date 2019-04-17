@@ -70,6 +70,7 @@ class SignUp extends Component {
                   placeholder="Name"
                 />
               </div>
+              </div>
               <div className="field">
                 <label className="label">Email</label>
                 <div className="control">
@@ -115,7 +116,6 @@ class SignUp extends Component {
                   </button>
                 </div>
               </div>
-            </div>
           </form>
         </div>
       </Box>

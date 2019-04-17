@@ -163,6 +163,19 @@ button {
 }
 .container {
   padding: 40px 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+}
+@media screen and (min-width: 1088px) {
+  .container {
+      max-width: 960px;
+      width: auto !important;
+  }
+}
+.box {
+  max-width: 640px;
 }
 .sign-in {
   display: flex;
