@@ -5,7 +5,6 @@ import "./index.scss";
 import * as serviceWorker from "./serviceWorker";
 import SignUp from "./components/signup";
 import SignIn from "./components/signin";
-import Groups from "./components/groups";
 import Dashboard from "./components/dashboard";
 import Notebook from "./components/notebook";
 import Navbar from "./components/navbar";
@@ -18,7 +17,6 @@ ReactDOM.render(
       <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/signup" component={SignUp} />
-      <Route exact path="/groups" component={Groups} />
       <Route path="/notebook/:notebookId" component={Notebook} />
     </React.Fragment>
   </Router>,

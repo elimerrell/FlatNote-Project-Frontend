@@ -215,9 +215,13 @@ class Notebook extends Component {
   };
 
   persistNote = newNote => {
+    const {
+      match: { params }
+    } = this.props;
+    console.log("persist note function");
     fetch(
       `http://localhost:3000/api/v1/users/${USER}/notebooks/${
-        this.state.currentNote.notebook_id
+        params.notebookId
       }/notes`,
       {
         method: "POST",

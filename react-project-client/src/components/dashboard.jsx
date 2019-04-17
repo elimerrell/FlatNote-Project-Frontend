@@ -4,6 +4,7 @@ import Container from "react-bulma-components/lib/components/container";
 import Section from "react-bulma-components/lib/components/section";
 import Box from "react-bulma-components/lib/components/box";
 import NotebookCard from "./notebookCard";
+import NewNotebook from "./newnotebook";
 import { withRouter } from "react-router-dom";
 
 const USER = localStorage.getItem("user");
@@ -37,9 +38,36 @@ class Dashboard extends Component {
     this.props.history.push(`/notebook/${notebook.id}`);
   };
 
+  handleSubmit = ev => {
+    ev.preventDefault();
+    let newNotebook = {
+      category: ev.target.category.value,
+      title: ev.target.title.value,
+      description: ev.target.description.value
+    };
+    let newNotebooks = this.state.notebooks.slice();
+    newNotebooks.push(newNotebook);
+    this.setState({
+      notebooks: newNotebooks
+    });
+    this.persistNotebook(newNotebook);
+  };
+
+  persistNotebook = newNotebook => {
+    fetch(`http://localhost:3000/api/v1/users/${USER}/notebooks/`, {
+      method: "POST",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newNotebook)
+    });
+  };
+
   render() {
     return (
       <Container>
+        <NewNotebook handleSubmit={this.handleSubmit} />
         <div className="dashboard">
           <Columns>
             {this.state.notebooks.length > 0
