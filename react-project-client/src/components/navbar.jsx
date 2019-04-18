@@ -45,8 +45,8 @@ class Navbar extends Component {
   sendPage = ev => {
     if (ev.target.textContent === "Dashboard") {
       this.props.history.push("/dashboard");
-    } else if (ev.target.textContent === "About") {
-      this.props.history.push("/about");
+    } else if (ev.target.textContent === "Sign Up") {
+      this.props.history.push("/signup");
     } else if (ev.target.textContent === "Sign Out") {
       localStorage.clear("token");
       this.props.history.push("/signin");
@@ -71,7 +71,7 @@ class Navbar extends Component {
               onClick={ev => this.sendPage(ev)}
             >
               <MenuItem onClick={this.handleClose}>Dashboard</MenuItem>
-              <MenuItem onClick={this.handleClose}>About</MenuItem>
+              <MenuItem onClick={this.handleClose}>Sign Up</MenuItem>
               {localStorage.getItem("token") ? (
                 <MenuItem onClick={this.handleClose}>Sign Out</MenuItem>
               ) : (

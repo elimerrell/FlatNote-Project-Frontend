@@ -57,19 +57,19 @@ class SignUp extends Component {
   render() {
     return (
       <Container className="sign-in-container">
-      <Box>
-        <div className="sign-in">
-          <form onSubmit={this.handleSubmit}>
-            <div className="field">
-              <label className="label">Name</label>
-              <div className="control">
-                <input
-                  name="name"
-                  className="input"
-                  type="text"
-                  placeholder="Name"
-                />
-              </div>
+        <Box>
+          <div className="sign-in">
+            <form onSubmit={this.handleSubmit}>
+              <div className="field">
+                <label className="label">Name</label>
+                <div className="control">
+                  <input
+                    name="name"
+                    className="input"
+                    type="text"
+                    placeholder="Name"
+                  />
+                </div>
               </div>
               <div className="field">
                 <label className="label">Email</label>
@@ -116,9 +116,9 @@ class SignUp extends Component {
                   </button>
                 </div>
               </div>
-          </form>
-        </div>
-      </Box>
+            </form>
+          </div>
+        </Box>
       </Container>
     );
   }

@@ -22,28 +22,37 @@ class NewNotebook extends Component {
     newNotebook.title = this.state.title;
   };
 
-  clearInputs = () => {
-    this.setState({
-      title: "",
-      content: "",
-      color: ""
-    });
+  putNewNotebook = ev => {
+    ev.preventDefault();
+    this.props.handleSubmit(ev);
+    this.setState({ toggled: !this.state.toggled });
   };
 
   showNoteForm = () => {
     return (
       <Container>
         <div className="new-note">
-          <form onSubmit={this.props.handleSubmit}>
+          <form onSubmit={this.putNewNotebook}>
             <div class="field">
               <label class="label">Category</label>
               <div class="control">
-                <input
+                {/* <input
                   name="category"
                   class="input"
                   type="text"
                   placeholder="Note Title"
-                />
+                /> */}
+                <select
+                  name="category"
+                  class="input"
+                  type="text"
+                  placeholder="Category"
+                >
+                  <option value="school">School</option>
+                  <option value="work">Work</option>
+                  <option value="to-do">To-Do</option>
+                  <option value="reminders">Reminders</option>
+                </select>
               </div>
             </div>
 
@@ -72,11 +81,7 @@ class NewNotebook extends Component {
 
             <div class="field is-grouped">
               <div class="control">
-                <button
-                  id="new-note"
-                  onClick={() => this.clearInputs}
-                  class="button is-link"
-                >
+                <button id="new-note" class="button is-link">
                   Submit
                 </button>
               </div>

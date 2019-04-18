@@ -40,46 +40,53 @@ class SignIn extends Component {
   render() {
     return (
       <Container className="sign-in-container">
-      <Box className="wrapper">
-        <div className="sign-in">
-          <form onSubmit={this.handleSubmit}>
-            <div className="field">
-              <label className="label">Email</label>
-              <div className="control">
-                <input
-                  name="email"
-                  className="input"
-                  type="email"
-                  placeholder="Email"
-                />
+        <Box className="wrapper">
+          <div className="sign-in">
+            <form onSubmit={this.handleSubmit}>
+              <div className="field">
+                <label className="label">Email</label>
+                <div className="control">
+                  <input
+                    name="email"
+                    className="input"
+                    type="email"
+                    placeholder="Email"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Password</label>
-              <div className="control">
-                <input
-                  name="password"
-                  className="input"
-                  type="password"
-                  placeholder="Password"
-                />
+              <div className="field">
+                <label className="label">Password</label>
+                <div className="control">
+                  <input
+                    name="password"
+                    className="input"
+                    type="password"
+                    placeholder="Password"
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="field is-grouped">
-              <div className="control">
-                <button
-                  id="new-note"
-                  onClick={() => this.clearInputs}
-                  className="button is-link"
-                >
-                  Submit
-                </button>
+              <div className="field is-grouped">
+                <div className="control">
+                  <button
+                    className="green-button"
+                    onClick={() => this.clearInputs}
+                    className="button is-link"
+                  >
+                    Log In
+                  </button>
+                  <button
+                    className="green-button"
+                    onClick={() => this.props.history.push("/signup")}
+                    className="button is-link"
+                  >
+                    Sign Up
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
-        </div>
-      </Box>
+            </form>
+          </div>
+        </Box>
       </Container>
     );
   }

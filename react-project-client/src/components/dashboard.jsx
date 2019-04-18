@@ -3,6 +3,7 @@ import Columns from "react-bulma-components/lib/components/columns";
 import Container from "react-bulma-components/lib/components/container";
 import NotebookCard from "./notebookCard";
 import NewNotebook from "./newnotebook";
+import Filter from "./filter";
 import { withRouter } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
@@ -11,6 +12,7 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       notebooks: [],
+      allNotebooks: [],
       currentUser: localStorage.getItem("user")
     };
   }
@@ -31,7 +33,8 @@ class Dashboard extends Component {
         .then(resp => resp.json())
         .then(notebooks =>
           this.setState({
-            notebooks
+            notebooks: notebooks,
+            allNotebooks: notebooks
           })
         );
     }
@@ -71,11 +74,28 @@ class Dashboard extends Component {
     );
   };
 
+  handleFilter = selection => {
+    if (selection.value === "all") {
+      this.setState({
+        notebooks: this.state.allNotebooks
+      });
+    } else {
+      let filteredNotebooks = this.state.allNotebooks.filter(notebook => {
+        return notebook.category === selection.value.toLowerCase();
+      });
+
+      this.setState({
+        notebooks: filteredNotebooks
+      });
+    }
+  };
+
   render() {
     return (
       <Container>
         {localStorage.getItem("token") ? null : <Redirect to="/" />}
         <NewNotebook handleSubmit={this.handleSubmit} />
+        <Filter handleFilter={this.handleFilter} />
         <div className="dashboard">
           <Columns>
             {this.state.notebooks.length > 0

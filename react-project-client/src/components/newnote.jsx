@@ -22,19 +22,11 @@ class NewNote extends Component {
     newNote.title = this.state.title;
   };
 
-  clearInputs = () => {
-    this.setState({
-      title: "",
-      content: "",
-      color: ""
-    });
-  };
-
   putNewNote = ev => {
     ev.preventDefault();
-    this.props.handleSubmit(ev)
-    this.setState({toggled: !this.state.toggled})
-  }
+    this.props.handleSubmit(ev);
+    this.setState({ toggled: !this.state.toggled });
+  };
 
   showNoteForm = () => {
     return (
@@ -66,11 +58,7 @@ class NewNote extends Component {
 
             <div class="field is-grouped">
               <div class="control">
-                <button
-                  id="new-note"
-                  onClick={() => this.clearInputs}
-                  class="button is-link"
-                >
+                <button id="new-note" class="button is-link">
                   Submit
                 </button>
               </div>

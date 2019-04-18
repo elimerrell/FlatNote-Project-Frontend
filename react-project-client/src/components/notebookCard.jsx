@@ -2,6 +2,7 @@ import React from "react";
 import Card from "react-bulma-components/lib/components/card";
 import Content from "react-bulma-components/lib/components/content";
 import Heading from "react-bulma-components/lib/components/heading";
+import Button from "react-bulma-components/lib/components/button";
 
 const NotebookCard = props => {
   return (
