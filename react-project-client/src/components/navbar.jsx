@@ -71,11 +71,11 @@ class Navbar extends Component {
               onClick={ev => this.sendPage(ev)}
             >
               <MenuItem onClick={this.handleClose}>Dashboard</MenuItem>
-              <MenuItem onClick={this.handleClose}>Sign Up</MenuItem>
               {localStorage.getItem("token") ? (
                 <MenuItem onClick={this.handleClose}>Sign Out</MenuItem>
               ) : (
-                <MenuItem onClick={this.handleClose}>Sign In</MenuItem>
+                <><MenuItem onClick={this.handleClose}>Sign Up</MenuItem>
+                <MenuItem onClick={this.handleClose}>Sign In</MenuItem></>
               )}
             </Menu>
           </IconButton>
