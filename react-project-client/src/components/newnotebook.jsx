@@ -57,7 +57,7 @@ class NewNotebook extends Component {
                   name="title"
                   class="input"
                   type="text"
-                  placeholder="Note Title"
+                  placeholder="Notebook Title"
                 />
               </div>
             </div>
@@ -68,7 +68,7 @@ class NewNotebook extends Component {
                 <textarea
                   name="description"
                   class="textarea"
-                  placeholder="Note Content"
+                  placeholder="Notebook Description"
                 />
               </div>
             </div>

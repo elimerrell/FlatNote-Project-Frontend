@@ -11,8 +11,13 @@ const NotebookCard = props => {
       <Card.Content>
         <Heading>{props.notebook.title}</Heading>
         <Content>{props.notebook.description}</Content>
-        <Button onClick={() => props.handleClick(props.notebook)}>Open</Button>
-        <Button onClick={() => props.handleDelete(props.notebook)}>
+        <Button color="info" onClick={() => props.handleClick(props.notebook)}>
+          Open
+        </Button>
+        <Button
+          color="danger"
+          onClick={() => props.handleDelete(props.notebook)}
+        >
           <FaTrashAlt />
         </Button>
       </Card.Content>
