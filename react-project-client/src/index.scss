@@ -35,6 +35,11 @@ code {
   margin: auto;
   align-content: center;
   justify-content: center;
+  .columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 }
 
 .sticky {
