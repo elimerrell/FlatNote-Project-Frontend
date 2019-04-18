@@ -36,12 +36,6 @@ class NewNotebook extends Component {
             <div class="field">
               <label class="label">Category</label>
               <div class="control">
-                {/* <input
-                  name="category"
-                  class="input"
-                  type="text"
-                  placeholder="Note Title"
-                /> */}
                 <select
                   name="category"
                   class="input"

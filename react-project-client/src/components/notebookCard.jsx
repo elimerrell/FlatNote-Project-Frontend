@@ -3,13 +3,18 @@ import Card from "react-bulma-components/lib/components/card";
 import Content from "react-bulma-components/lib/components/content";
 import Heading from "react-bulma-components/lib/components/heading";
 import Button from "react-bulma-components/lib/components/button";
+import { FaTrashAlt } from "react-icons/fa";
 
 const NotebookCard = props => {
   return (
-    <Card onClick={() => props.handleClick(props.notebook)}>
+    <Card>
       <Card.Content>
         <Heading>{props.notebook.title}</Heading>
         <Content>{props.notebook.description}</Content>
+        <Button onClick={() => props.handleClick(props.notebook)}>Open</Button>
+        <Button onClick={() => props.handleDelete(props.notebook)}>
+          <FaTrashAlt />
+        </Button>
       </Card.Content>
     </Card>
   );

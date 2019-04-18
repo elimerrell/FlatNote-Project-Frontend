@@ -90,6 +90,35 @@ class Dashboard extends Component {
     }
   };
 
+  handleDelete = notebook => {
+    console.log("delete function");
+    let confirm = window.confirm(
+      "Are you sure you want to delete this notebook?"
+    );
+
+    if (confirm) {
+      fetch(
+        `http://localhost:3000/api/v1/users/${
+          this.state.currentUser
+        }/notebooks/${notebook.id}/`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(notebook)
+        }
+      );
+      let newNotebooks = this.state.allNotebooks.filter(noteBook => {
+        return notebook.id != noteBook.id;
+      });
+      this.setState({
+        notebooks: newNotebooks
+      });
+    }
+  };
+
   render() {
     return (
       <Container>
@@ -105,6 +134,7 @@ class Dashboard extends Component {
                       <NotebookCard
                         notebook={notebook}
                         handleClick={this.handleClick}
+                        handleDelete={this.handleDelete}
                       />
                     </Columns.Column>
                   );
