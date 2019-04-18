@@ -21,28 +21,9 @@ code {
     monospace;
 }
 
-.circle {
-  position: relative;
-  border-radius: 50%;
-  width: 80%;
-  height: auto;
-  padding-top: 80%;
-  background: grey;
-}
-
-.circle:hover {
-  top: -15px;
-  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
-}
-
-.circle-row {
-  width: 33%;
-  height: auto;
-  display: inline-block;
-}
-
 .card {
   height: 100%;
+  border-radius: 6px;
 }
 
 .card:hover {
